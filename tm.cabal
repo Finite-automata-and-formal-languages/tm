@@ -1,0 +1,25 @@
+cabal-version:      3.4
+name:               tm
+version:            0.1.0.0
+license:            AGPL-3.0-or-later
+license-file:       LICENSE
+author:             Naïm Favier
+maintainer:         n@monade.li
+category:           Math
+build-type:         Simple
+
+executable tm
+    hs-source-dirs:   src
+    main-is:          Main.hs
+    default-language: GHC2021
+    default-extensions:
+        BlockArguments,
+        OverloadedStrings,
+        RecordWildCards,
+    build-depends:
+        base ^>=4.18.2.1,
+        containers,
+        megaparsec,
+        mtl,
+        text,
+        turing,
