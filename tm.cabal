@@ -3,23 +3,31 @@ name:               tm
 version:            0.1.0.0
 license:            AGPL-3.0-or-later
 license-file:       LICENSE
-author:             Naïm Favier
+author:             Naïm Camille Favier
 maintainer:         n@monade.li
 category:           Math
 build-type:         Simple
 
 executable tm
     hs-source-dirs:   src
-    main-is:          Main.hs
     default-language: GHC2021
+    other-modules:
+        TM,
     default-extensions:
         BlockArguments,
         OverloadedStrings,
         RecordWildCards,
     build-depends:
-        base ^>=4.18.2.1,
+        base,
         containers,
         megaparsec,
         mtl,
         text,
         turing,
+    if arch(javascript)
+        main-is: MainJS.hs
+        cpp-options: -DGHCJS_BROWSER
+        -- https://gitlab.haskell.org/ghc/ghc/-/merge_requests/14362
+        ld-options: -sEXPORTED_RUNTIME_METHODS=HEAP8,HEAPU8
+    else
+        main-is: Main.hs
